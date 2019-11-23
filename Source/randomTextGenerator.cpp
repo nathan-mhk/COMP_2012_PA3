@@ -35,10 +35,34 @@ char RandomTextGenerator::verifyOriginal() {
 }
 
 void RandomTextGenerator::prepareWFM() {
-    // TODO
+    // Generate wfm using original
+    string copy = original;
+    string prevWord = "";
+    string currWord = "";
+    char delim = ' ';
+    for (string::const_iterator itr = original.begin(); itr != original.end();) {
+        // Ignore all the continuous space char
+        if (*itr == delim) {
+            ++itr;
+            continue;
+        }
+        string::const_iterator nextItr = itr;
+        // Prevent dereferencing .end()
+        while ((nextItr != original.end()) && (*nextItr != delim)) {
+            currWord += *nextItr;
+            ++nextItr;
+        }
+        // nextItr will point at the first space char after the extracted word
+        (wfm[prevWord][currWord])++;
+        prevWord = currWord;
+        currWord = "";
+
+        itr = nextItr;
+    }
 }
 
 string RandomTextGenerator::generate(RNG* rng, int length) {
     // TODO
+    // Need this for test6
     return "test";
 }

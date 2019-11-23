@@ -150,12 +150,12 @@ int main()
     cout << boolalpha;
     cout << "Hello Markov Chain!" << endl;
 
-    test0(); // Passed
-    test1(); // Passed
+    test0();    // Passed
+    test1();    // Passed
     test2_3();
     RandomTextGenerator rtg;
-    test4(rtg);  // Passed
-    // test5(rtg);
+    test4(rtg); // Passed
+    test5(rtg); // Passed
     // test6(rtg);
     // freeTest(rtg);
 
