@@ -11,8 +11,7 @@ void RandomTextGenerator::readOriginalFromFile(const char fileName[]) {
     if (file.is_open()) {
         getline(file, original, '\n');
         file.close();
-    } else
-        cout << "Failed to open file" << endl;
+    }
 }
 
 char RandomTextGenerator::verifyOriginal() {
