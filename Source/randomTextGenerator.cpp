@@ -61,8 +61,45 @@ void RandomTextGenerator::prepareWFM() {
     }
 }
 
+string getFirstWord(const string& original) {
+    string FirstWord = "";
+    char delim = ' ';
+    // If not empty string , shall never happens
+    if (original.begin() != original.end()) {
+        string::const_iterator itr = original.begin();
+        while ((itr != original.end()) && (*itr == delim)) {
+            ++itr;
+        }
+        do {
+            FirstWord += *itr;
+            ++itr;
+        } while ((itr != original.end()) && (*itr != delim));
+    }
+    return FirstWord;
+}
+
 string RandomTextGenerator::generate(RNG* rng, int length) {
-    // TODO
-    // Need this for test6
-    return "test";
+    WeightedRandomItemPicker<string> picker;
+    string text = "";
+    string word = "";
+    const string firstWord = getFirstWord(original);
+
+    for (int i = 0; i < length; ++i) {
+        if (wfm[word].getSize() == 0)
+            word = firstWord;
+        cout << "Previous word is \"" << word << "\"." << endl;
+
+        string* items = wfm[word].getKeyList();
+        int* weights = wfm[word].getValueList();
+
+        word = picker.pick(weights, items, wfm[word].getSize(), rng);
+        text += word;
+        if (i < length - 1)
+            text += " ";
+        
+        delete [] items;
+        delete [] weights;
+    }
+    wfm.clean();
+    return text;
 }
