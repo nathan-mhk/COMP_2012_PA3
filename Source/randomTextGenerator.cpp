@@ -35,6 +35,7 @@ char RandomTextGenerator::verifyOriginal() {
 
 void RandomTextGenerator::prepareWFM() {
     // Generate wfm using original
+    wfm.clean();
     string copy = original;
     string prevWord = "";
     string currWord = "";
@@ -99,6 +100,5 @@ string RandomTextGenerator::generate(RNG* rng, int length) {
         delete [] items;
         delete [] weights;
     }
-    wfm.clean();
     return text;
 }
