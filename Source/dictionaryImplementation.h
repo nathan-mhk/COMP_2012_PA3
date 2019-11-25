@@ -1,7 +1,7 @@
 // SUBMIT THIS FILE
 
 template <typename K, typename V>
-Dictionary<K, V>::Dictionary(const Dictionary& another) : array(another.size ? new KeyValue[another.size] : NULL), size(another.size) {
+Dictionary<K, V>::Dictionary(const Dictionary<K, V>& another) : array(another.size ? new KeyValue[another.size] : NULL), size(another.size) {
     // Deep copy
     for (int i = 0; i < size; ++i) {
         array[i].key = another.array[i].key;
@@ -32,7 +32,7 @@ V& Dictionary<K, V>::operator[](K key) {
 }
 
 template <typename K, typename V>
-Dictionary<K, V>& Dictionary<K, V>::operator=(const Dictionary& another) {
+Dictionary<K, V>& Dictionary<K, V>::operator=(const Dictionary<K, V>& another) {
     // Deep assignment
     if (this != &another) {
         delete [] array;
